@@ -58,9 +58,12 @@ request.then(function(values){
 		    		fill = '#92c5de';
 		    	}
 		    	// 12% or more
-		    	if (dempercent <= 45) {
-		    		fill = '#f4a582';
+		    	else if (dempercent <= 45) {
+		    		fill = '#f7f7f7';
 		    	}
+                else if (dempercent < 25) {
+                    fill = '#f4a582'
+                }
 
 		    	// FIXME: remove existing symbolization and create a diverging
 		    	// symbology based the democrat or republic vote as a percent
