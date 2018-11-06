@@ -64,7 +64,7 @@ request.then(function(values){
                 else if (dempercent < 25) {
                     fill = '#f4a582'
                 }
-
+                // no need for final color in code because it is not going to show up in this majority dem region
 		    	// FIXME: remove existing symbolization and create a diverging
 		    	// symbology based the democrat or republic vote as a percent
 		    	// of the total vote.
