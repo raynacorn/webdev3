@@ -2,7 +2,7 @@
 
 // initialize map
 var map = L.map("map", {
-    centr: [46.73, -92.107],
+    center: [46.73, -92.107],
     zoom: 11
 });
 
@@ -40,22 +40,23 @@ request.then(function(values){
 		    	// console.log('totalVote:', totalVote);
 		    	// console.log('thirdPartyVote:', thirdPartyVote);
 		    	console.log('pct3rd:', thirdPartyPct);
-                // var dempercent=Math.round(demVote/total/Vote*100)
+                var dempercent=Math.round(demVote/totalVote*100)
+                console.log("percent", dempercent)
 
 		    	// assign colors from the ColorBrewer yellow-green scale
 		    	var fill;
 		    	// equal interval classification
 		    	// 7% or less
-		    	if (thirdPartyPct <= 7) {
-		    		fill = '#f7fcb9';
+		    	if (dempercent >= 60) {
+		    		fill = '#3182bd';
 		    	}
 		    	// 11% or less
-		    	else if (thirdPartyPct <= 11) {
-		    		fill = '#addd8e';
+		    	else if (dempercent <=60) {
+		    		fill = '#9ecae1';
 		    	}
 		    	// 12% or more
-		    	else {
-		    		fill = '#31a354';
+		    	else if (dempercent <= 45) {
+		    		fill = '#deebf7';
 		    	}
 
 		    	// FIXME: remove existing symbolization and create a diverging
