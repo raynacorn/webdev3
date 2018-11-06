@@ -10,13 +10,13 @@ var map = L.map("map", {
 var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(mop);
+}).addTo(map);
 
 // create request for GeoJSON
 var request = new Promise(function(resolve, reject){
 	var request = new XMLHttpRequest();
 	request.addEventListener("load", function(){ resolve(this.responseText) });
-	request.open("GET", "data/duluthprecinctsWGS84.geojson");
+	request.open("GET", "data/duluth_precincts_WGS84.geojson");
 	request.send();
 });
 
@@ -40,6 +40,7 @@ request.then(function(values){
 		    	// console.log('totalVote:', totalVote);
 		    	// console.log('thirdPartyVote:', thirdPartyVote);
 		    	console.log('pct3rd:', thirdPartyPct);
+                // var dempercent=Math.round(demVote/total/Vote*100)
 
 		    	// assign colors from the ColorBrewer yellow-green scale
 		    	var fill;
@@ -80,7 +81,7 @@ request.then(function(values){
 		// Leaflet documentation explains:
 		// "If a Function is passed it will receive the layer as the first
 		// argument and should return a String or HTMLElement."
-		.bindPopup(function (layer){
+		precinctsLayer.bindPopup(function (layer){
 			// create variables to be displayed in popup
 			var demVote = layer.feature.properties.USPRSDFL;
 		    var repVote = layer.feature.properties.USPRSR;
@@ -91,7 +92,7 @@ request.then(function(values){
 		    var html = "<h4>Precinct: "+pctName+"</h4>"+
 		    	"<table><tr><td>Democratic votes: </td><td>"+demVote+"</td></tr>"+
 		    	"<tr><td>Republican votes: </td><td>"+repVote+"</td></tr>"+
-		    	"<tr><td>Tomfoolery: </td><td>"+balderdash+"</td></tr>"+
+		    	"<tr><td>Total votes: </td><td>"+totalVote+"</td></tr>"+
 		    	"<tr><td>Third party votes: </td><td>"+(totalVote-demVote-repVote)+"</td></tr></table>";
 
 		    return html;
