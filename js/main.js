@@ -42,21 +42,24 @@ request.then(function(values){
 		    	console.log('pct3rd:', thirdPartyPct);
                 var dempercent=Math.round(demVote/totalVote*100)
                 console.log("percent", dempercent)
+                var reppercent=Math.round(repVote/totalVote*100)
+                console.log('percentrep', reppercent)
 
 		    	// assign colors from the ColorBrewer yellow-green scale
 		    	var fill;
 		    	// equal interval classification
 		    	// 7% or less
 		    	if (dempercent >= 60) {
-		    		fill = '#3182bd';
+		    		fill = '#0571b0';
 		    	}
+                
 		    	// 11% or less
-		    	else if (dempercent <=60) {
-		    		fill = '#9ecae1';
+		    	else if (dempercent <60) {
+		    		fill = '#92c5de';
 		    	}
 		    	// 12% or more
-		    	else if (dempercent <= 45) {
-		    		fill = '#deebf7';
+		    	if (dempercent <= 45) {
+		    		fill = '#f4a582';
 		    	}
 
 		    	// FIXME: remove existing symbolization and create a diverging
